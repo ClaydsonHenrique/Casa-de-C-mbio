@@ -5,6 +5,7 @@ const container = document.getElementById('coins')
 const seach = document.getElementById('seach')
 const coin_name = document.getElementsByClassName('coin-name')
 
+// criando elementos html
 const getAllCoins = (keys, values) => {
   const valuesCoins = document.createElement('div')
   valuesCoins.classList.add('values-coins')
@@ -32,7 +33,7 @@ const getAllCoins = (keys, values) => {
   valuesCoins.appendChild(money);
   money.innerText = values;
 }
-
+// verificando e pegando todos valores das moedas
 const getCoins = () => {
   const valueMoney = document.getElementById('money').value;
   if (valueMoney === '') {
