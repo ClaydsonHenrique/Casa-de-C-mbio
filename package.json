@@ -11,6 +11,8 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@sweetalert2/theme-dark": "^5.0.15",
+    "@sweetalert2/themes": "^5.0.15",
     "sweetalert2": "^11.7.2",
     "vite": "^4.1.4"
   },

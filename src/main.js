@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+import '@sweetalert2/theme-dark/dark.min.css';
 
 const container = document.getElementById('coins')
 const seach = document.getElementById('seach')
@@ -34,10 +35,14 @@ const getAllCoins = (keys, values) => {
 
 const getCoins = () => {
   const valueMoney = document.getElementById('money').value;
-  if (!valueMoney) {
-    return alert('console')
+  if (valueMoney === '') {
+    Swal.fire({
+      title: 'Error!',
+      text: 'Insira uma moeda',
+      icon: 'error',
+    })
   }
-  fetch(`https://api.exchangerate.host/latest?base=${moeda.toUpperCase()}`)
+  fetch(`https://api.exchangerate.host/latest?base=${valueMoney.toUpperCase()}`)
     .then((response) => response.json())
     .then((data) => {
       coin_name.innerText = `Valores refetentes a 1 ${data.base}`;
@@ -45,18 +50,24 @@ const getCoins = () => {
       const keys = Object.keys(rates)
       const values = Object.values(rates)
 
-      if (keys.some((key) => key === valueMoney.toUpperCase())) {
+      if (keys.find((key) => key === valueMoney.toUpperCase())) {
         keys.forEach((key, index) => {
           getAllCoins(key, values[index].toFixed(3))
         })
-      } else {
+      } else if (valueMoney != '') {
         coin_name.innerText = '';
+        Swal.fire({
+          title: 'Error!',
+          text: 'Insira uma moeda valida',
+          icon: 'error',
+        })
       }
 
     })
 }
 
 seach.addEventListener('click', () => {
+  container.innerHTML = ''
   seach.classList.add('selected');
   getCoins();
 })
