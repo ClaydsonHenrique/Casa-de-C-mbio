@@ -34,8 +34,10 @@ const getAllCoins = (keys, values) => {
   money.innerText = values;
 }
 // verificando e pegando todos valores das moedas
+
 const getCoins = () => {
   const valueMoney = document.getElementById('money').value;
+
   if (valueMoney === '') {
     Swal.fire({
       title: 'Error!',
